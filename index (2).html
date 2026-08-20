@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="B7v8FpM4zGlP3A-4ASN4ZphCDIuatpjp3fRW9aWwKqQ" />
+  
+  <title>Vertex OS — Next-Generation Sovereign Linux Operating System</title>
+  <meta name="description" content="Vertex OS is an independent Linux-based operating system designed for bare-metal hardware deployment and sovereign hybrid cloud synchronization." />
+  
+  <meta property="og:title" content="Vertex OS" />
+  <meta property="og:description" content="Bare-metal hardware deployment engine with native Google Drive integration." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/icon.png" />
+  <link rel="icon" type="image/png" href="/icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 24, 38, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #00f2ff;
+      --accent-dim: rgba(0, 242, 255, 0.12);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --code-bg: #0d1117;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 242, 255, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(168, 85, 247, 0.05) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 9, 14, 0.85);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #00f2ff, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #07090e;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 70px 0 50px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(0, 242, 255, 0.25);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #07090e;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Cards & Content */
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(12px);
+    }
+
+    .card-accent {
+      border-color: rgba(0, 242, 255, 0.3);
+      background: linear-gradient(180deg, rgba(0, 242, 255, 0.03) 0%, rgba(18, 24, 38, 0.7) 100%);
+    }
+
+    ul.feature-list {
+      padding-left: 20px;
+      color: var(--text-muted);
+      margin: 16px 0;
+    }
+
+    ul.feature-list li {
+      margin-bottom: 8px;
+    }
+
+    .code-pill {
+      background: var(--code-bg);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .policy-box {
+      background: rgba(0, 242, 255, 0.05);
+      border-left: 3px solid var(--accent);
+      padding: 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      margin-top: 60px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="logo-box">
+        <div class="logo-badge">V</div>
+        <span style="font-size: 18px; font-weight: 700;">Vertex OS</span>
+      </a>
+      <nav aria-label="Main Navigation">
+        <a href="#about">About</a>
+        <a href="#google-drive-integration" style="color: var(--accent);">Cloud Integration</a>
+        <a href="#privacy-policy">Privacy</a>
+        <a href="#terms-of-service">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero Section -->
+    <section class="hero" id="overview">
+      <div class="badge">OAuth Verified Application • Vertex OS</div>
+      <h1>Vertex OS — Sovereign Hardware & Cloud OS</h1>
+      <p>
+        An independent Linux operating system built for fast bare-metal hardware deployment, resilient Btrfs filesystem structures, and sovereign cloud filesystem synchronization.
+      </p>
+      <div class="cta-group">
+        <a href="#google-drive-integration" class="btn btn-primary">Cloud Integration Details</a>
+        <a href="#privacy-policy" class="btn btn-secondary">Privacy Policy</a>
+      </div>
+    </section>
+
+    <!-- Grid Features -->
+    <div class="grid-2">
+      <div class="card">
+        <h2 class="section-title">Bare-Metal Deployment</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">
+          Vertex OS provides an automated deployment installer that partitions (GPT/EFI) and configures native Btrfs subvolumes for quick system snapshot rollbacks.
+        </p>
+      </div>
+      <div class="card">
+        <h2 class="section-title">Zero-Telemetry Privacy</h2>
+        <p style="color: var(--text-muted); font-size: 14px;">
+          Your computing environment belongs strictly to you. All system processes, account configurations, and cloud authorization tokens remain offline on your machine.
+        </p>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="card">
+      <h2 class="section-title">About Vertex OS</h2>
+      <p style="color: var(--text-muted); margin-bottom: 14px;">
+        <strong>Vertex OS</strong> is an independent Linux-based operating system distribution developed by The Vertex Project. It provides a complete desktop environment with native hardware deployment installers, offline-first local productivity tools, and sovereign system management.
+      </p>
+      <p style="color: var(--text-muted);">
+        The operating system features the <strong>Vertex Cloud Sync</strong> background subsystem, which enables users to link their Google Drive storage directly to the local Linux filesystem without routing through external relay servers.
+      </p>
+    </section>
+
+    <!-- Google Drive API Integration Section -->
+    <section id="google-drive-integration" class="card card-accent">
+      <div class="badge">Google OAuth 2.0 Integration</div>
+      <h2 class="section-title">Google API & Google Drive Integration Purpose</h2>
+      <p style="color: var(--text-muted); margin-bottom: 16px;">
+        Vertex OS integrates Google OAuth 2.0 to offer seamless, sovereign cloud storage synchronization for users who choose to link their Google Account.
+      </p>
+
+      <h3 style="font-size: 16px; margin: 18px 0 8px; color: var(--accent);">1. Requested Scopes & Intended Usage</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Vertex OS requests access to <code class="code-pill">https://www.googleapis.com/auth/drive</code> (or <code class="code-pill">drive.file</code>), <code class="code-pill">userinfo.email</code>, and <code class="code-pill">userinfo.profile</code> solely to:
+      </p>
+      <ul class="feature-list">
+        <li>Mount the user's remote Google Drive cloud storage to a local virtual directory path at <code class="code-pill">~/Vertex Cloud</code> on their computer.</li>
+        <li>Allow users to view, edit, and back up personal files via local file managers (such as Nautilus, Dolphin, or Thunar).</li>
+        <li>Execute background filesystem synchronization using the embedded <code class="code-pill">rclone</code> VFS engine.</li>
+        <li>Personalize the local desktop profile avatar and recovery email during system setup.</li>
+      </ul>
+
+      <h3 style="font-size: 16px; margin: 18px 0 8px; color: var(--accent);">2. Local-Only Token Storage & Zero External Relays</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        All OAuth 2.0 access and refresh tokens are written directly to the user's local disk at <code class="code-pill">~/.config/rclone/rclone.conf</code> with POSIX 0600 (owner read/write only) security permissions. Vertex OS transmits zero credentials, zero telemetry, and zero file payloads to any central server operated by The Vertex Project or third parties.
+      </p>
+
+      <h3 style="font-size: 16px; margin: 18px 0 8px; color: var(--accent);">3. Google API User Data Policy Compliance</h3>
+      <div class="policy-box">
+        <strong>Limited Use Disclosure:</strong> Vertex OS's use and transfer of information received from Google APIs to any other app will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">Google API Services User Data Policy</a>, including the Limited Use requirements.
+      </div>
+
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">
+        <em>Disclaimer: Google, Google Drive, and the Google logo are trademarks of Google LLC. Vertex OS is an independent operating system project and is not affiliated with, sponsored by, or endorsed by Google LLC.</em>
+      </p>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy-policy" class="card">
+      <h2 class="section-title">Privacy Policy</h2>
+      <p style="font-size: 12px; color: var(--accent); margin-bottom: 20px; font-family: 'JetBrains Mono', monospace;">Effective Date: August 20, 2026 • Published by The Vertex Project</p>
+
+      <h3 style="font-size: 15px; margin-bottom: 6px; color: #fff;">1. Data Sovereignty</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 14px;">
+        We do not collect telemetry, track user activity, or aggregate personal information. The operating system operates entirely offline-first.
+      </p>
+
+      <h3 style="font-size: 15px; margin-bottom: 6px; color: #fff;">2. Google Account Credentials</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 14px;">
+        When you link Google Drive, your authentication token is communicated directly between your local client and Google's OAuth endpoints. Tokens are stored locally on your physical drive and are never sent to external servers.
+      </p>
+
+      <h3 style="font-size: 15px; margin-bottom: 6px; color: #fff;">3. Token Revocation & Data Deletion</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 14px;">
+        You can revoke Vertex OS access at any time by removing your local configuration file (<code class="code-pill">~/.config/rclone/rclone.conf</code>) or via your Google Account Security Dashboard.
+      </p>
+
+      <h3 style="font-size: 15px; margin-bottom: 6px; color: #fff;">4. Contact</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        For privacy questions, reach out to: <a href="mailto:the.vertex.project.main@gmail.com" style="color: var(--accent);">the.vertex.project.main@gmail.com</a>
+      </p>
+    </section>
+
+    <!-- Terms of Service Section -->
+    <section id="terms-of-service" class="card">
+      <h2 class="section-title">Terms of Service</h2>
+      <p style="font-size: 12px; color: var(--accent); margin-bottom: 20px; font-family: 'JetBrains Mono', monospace;">Effective Date: August 20, 2026 • Published by The Vertex Project</p>
+
+      <h3 style="font-size: 15px; margin-bottom: 6px; color: #fff;">1. Usage Terms</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 14px;">
+        Vertex OS is provided as open operating system software. Users are responsible for managing their hardware backups and adhering to their cloud storage quota policies.
+      </p>
+
+      <h3 style="font-size: 15px; margin-bottom: 6px; color: #fff;">2. Third-Party Integrations</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 14px;">
+        Google Drive integration is provided as a client interface to official Google APIs. Use of Google Drive remains subject to Google's Terms of Service.
+      </p>
+
+      <h3 style="font-size: 15px; margin-bottom: 6px; color: #fff;">3. Disclaimer of Warranty</h3>
+      <p style="font-size: 14px; color: var(--text-muted);">
+        Vertex OS is distributed "AS IS" without warranties of any kind, express or implied.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-wrapper">
+      <div>
+        &copy; 2026 The Vertex Project. All rights reserved. • <strong>Vertex OS</strong>
+      </div>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <a href="#about" style="color: var(--text-muted); text-decoration: none;">About</a>
+        <a href="#google-drive-integration" style="color: var(--accent); text-decoration: none;">Drive Integration</a>
+        <a href="#privacy-policy" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+        <a href="#terms-of-service" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
